@@ -11,3 +11,17 @@ var intersection = function(nums1, nums2) {
     }
     return result;
 };
+
+// var intersection = function(nums1, nums2) {
+//     let result = [];
+//     const num1set = new Set(nums1);
+//     const num1setarr = [...num1set];
+//     for (let i = 0; i < num1setarr.length; i++) {
+//         if (nums2.includes(num1setarr[i])) {
+//             if (!result.includes(num1setarr[i])) {
+//                 result.push(num1setarr[i]);
+//             }
+//         }
+//     }
+//     return result;
+// };
