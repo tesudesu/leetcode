@@ -8,20 +8,18 @@ var shortestToChar = function(s, c) {
         }
     }
     let marker = 0;
-    let filler = 1;
     while (ans.includes(-1)) {
         for (let i = 0; i < ans.length; i++) {
             if (ans[i] === marker) {
                 if (ans[i-1] === -1) {
-                    ans[i-1] = filler;
+                    ans[i-1] = marker+1;
                 }
                 if (ans[i+1] === -1) {
-                    ans[i+1] = filler;
+                    ans[i+1] = marker+1;
                 }
             }
         }
         marker++;
-        filler++;
     }
     return ans;
 };
