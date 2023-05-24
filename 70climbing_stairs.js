@@ -4,8 +4,8 @@ var climbStairs = function(n) {
     let stairs = [];
     stairs[0] = 1;
     stairs[1] = 2;
-    for (let i = 3; i <= n; i++) {
-        stairs[i-1] = stairs[i-2] + stairs[i-3];
+    for (let i = 2; i <= n; i++) {
+        stairs[i] = stairs[i-1] + stairs[i-2];
     }
     return stairs[n-1];
 };
