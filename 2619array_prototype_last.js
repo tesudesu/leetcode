@@ -8,6 +8,14 @@ Array.prototype.last = function() {
     }
 };
 
+// Array.prototype.last = function(arr) {
+//     if (this[this.length-1] !== undefined) {
+//         return this[this.length-1];
+//     } else {
+//         return -1;
+//     }
+// };
+
 // Array.prototype.last = function() {
 //     return this.length ? this.pop() : -1;
 // };
