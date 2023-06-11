@@ -9,3 +9,28 @@ var canMakeArithmeticProgression = function(arr) {
     }
     return true;
 };
+
+// var canMakeArithmeticProgression = function(arr) {
+//     const min = Math.min(...arr);
+//     const max = Math.max(...arr);
+
+//     if ((max - min) % (arr.length - 1) !== 0) return false;
+//     const diff = (max - min) / (arr.length - 1);
+
+//     if (diff === 0) return true;
+
+//     let i = 0;
+//     while (i < arr.length) {
+//         const shouldPosition = (arr[i] - min) / diff;
+//         if (shouldPosition !== i) {
+//             if (arr[i] === arr[shouldPosition]) return false;
+//             const temp = arr[i];
+//             arr[i] = arr[shouldPosition];
+//             arr[shouldPosition] = temp;
+//         } else {
+//             i++;
+//         }
+//     }
+
+//     return arr;
+// };
