@@ -77,6 +77,42 @@ var search = function(nums, target) {
 //     let end = nums.length - 1;
 
 //     while (start <= end) {
+//         const mid = start + Math.floor((end - start) / 2);
+
+//         if (nums[mid] === target) {
+//             return mid;
+//         } else if (nums[mid] > target) {
+//             if (nums[mid] >= nums[start]) {
+//                 if (target >= nums[start]) {
+//                     end = mid - 1;
+//                 } else {
+//                     start = mid + 1;
+//                 }
+//             } else {
+//                 end = mid - 1;
+//             }
+//         } else {
+//             if (nums[mid] >= nums[start]) {
+//                 start = mid + 1;
+//             } else {
+//                 if (target >= nums[start]) {
+//                     end = mid - 1;
+//                 } else {
+//                     start = mid + 1;
+//                 }
+//             }
+//         }
+//     }
+
+//     return -1;
+// };
+
+
+// var search = function(nums, target) {
+//     let start = 0;
+//     let end = nums.length - 1;
+
+//     while (start <= end) {
 //         let mid = Math.floor((end - start) / 2) + start;
 
 //         if (nums[mid] === target) return mid;
