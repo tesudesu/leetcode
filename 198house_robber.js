@@ -1,17 +1,44 @@
 // https://leetcode.com/problems/house-robber/
 
 var rob = function(nums) {
-    let one = 0;
-    let two = nums[0];
+    let one = nums[nums.length - 1];
+    let two = 0;
 
-    for (let i = 1; i < nums.length; i++) {
+    for (let i = nums.length - 2; i >= 0; i--) {
         const temp = two;
-        two = Math.max(two, nums[i] + one);
-        one = temp;
+        two = one;
+        one = Math.max(two, nums[i] + temp);
     }
 
-    return Math.max(one, two);
+    return one;
 };
+
+
+// var rob = function(nums) {
+//     let dp = Array(nums.length).fill(0);
+//     dp[dp.length - 1] = nums[nums.length - 1];
+
+//     for (let i = dp.length - 2; i >= 0; i--) {
+//         dp[i] = Math.max(dp[i + 1], nums[i] + (dp[i + 2] || 0));
+//     }
+
+//     return dp[0];
+// };
+
+
+// var rob = function(nums) {
+//     let one = 0;
+//     let two = nums[0];
+
+//     for (let i = 1; i < nums.length; i++) {
+//         const temp = two;
+//         two = Math.max(two, nums[i] + one);
+//         one = temp;
+//     }
+
+//     return Math.max(one, two);
+// };
+
 
 // var rob = function(nums) {
 //     let dp = [0, nums[0]];
