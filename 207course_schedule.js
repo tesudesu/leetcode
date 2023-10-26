@@ -51,6 +51,60 @@ var canFinish = function(numCourses, prerequisites) {
 
 // DFS
 
+// var canFinish = function (numCourses, prerequisites) {
+//     const courseToPrereq = new Map();
+
+//     for (let i = 0; i < prerequisites.length; i++) {
+//         const [course, prereq] = prerequisites[i];
+
+//         if (courseToPrereq.has(course)) {
+//             let arr = courseToPrereq.get(course);
+//             arr.push(prereq);
+//             courseToPrereq.set(course, arr);
+//         } else {
+//             courseToPrereq.set(course, [prereq]);
+//         }
+//     }
+
+//     const able = new Set();
+//     const visited = new Set();
+
+//     for (let i = 0; i < numCourses; i++) {
+//         if (!courseToPrereq.has(i)) {
+//             able.add(i);
+//         }
+//     }
+
+//     const dfs = (node) => {
+//         if (able.has(node)) return true;
+//         if (visited.has(node)) return false;
+//         visited.add(node);
+
+//         let count = 0;
+//         const nextCourses = courseToPrereq.get(node);
+//         for (let i = 0; i < nextCourses.length; i++) {
+//             if (dfs(nextCourses[i])) {
+//                 count++;
+//             }
+//         }
+
+//         if (count === nextCourses.length) {
+//             able.add(node);
+//             return true;
+//         }
+
+//         return false;
+//     }
+
+
+//     for (let i = 0; i < numCourses; i++) {
+//         if (!dfs(i)) return false;
+//     }
+
+//     return true;
+// };
+
+
 // var canFinish = function(numCourses, prerequisites) {
 //     let passed = new Set();
 //     const courseprereqs = new Map();
