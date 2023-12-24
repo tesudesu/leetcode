@@ -1,5 +1,36 @@
 // https://leetcode.com/problems/image-smoother/submissions/
 
+// O(1) space
+
+var imageSmoother = function(img) {
+    for (let i = 0; i < img.length; i++) {
+        for (let j = 0; j < img[0].length; j++) {
+            let tot = 0;
+            let count = 0;
+            for (let k = i - 1; k <= i + 1; k++) {
+                for (let q = j - 1; q <= j + 1; q++) {
+                    if (k >= 0 && k < img.length && q >= 0 && q < img[0].length) {
+                        tot += img[k][q] % 256;
+                        count++;
+                    }
+                }
+            }
+            img[i][j] = Math.floor(tot / count) * 256 + img[i][j];
+        }
+    }
+
+    for (let i = 0; i < img.length; i++) {
+        for (let j = 0; j < img[0].length; j++) {
+            img[i][j] = Math.floor(img[i][j] / 256);
+        }
+    }
+
+    return img;
+};
+
+
+// O(m * n) space
+
 var imageSmoother = function(img) {
     const x = img.length;
     const y = img[0].length;
