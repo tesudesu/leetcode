@@ -1,28 +1,47 @@
 // https://leetcode.com/problems/subarray-sum-equals-k/
 
 var subarraySum = function(nums, k) {
-    let prefixSumMap = new Map();
-
     let sum = 0;
+    let count = 0;
 
-    let res = 0;
+    const map = new Map();
+    map.set(0, 1);
 
     for (let i = 0; i < nums.length; i++) {
         sum += nums[i];
-
-        if (sum === k) res++;
-
-        const complement = sum - k;
-
-        if (prefixSumMap.has(complement)) {
-            res += prefixSumMap.get(complement);
+        if (map.has(sum - k)) {
+            count += map.get(sum - k);
         }
-
-        prefixSumMap.set(sum, (prefixSumMap.get(sum) + 1) || 1);
+        map.set(sum, (map.get(sum) + 1) || 1);
     }
 
-    return res;
+    return sum;
 };
+
+
+// var subarraySum = function(nums, k) {
+//     let prefixSumMap = new Map();
+
+//     let sum = 0;
+
+//     let res = 0;
+
+//     for (let i = 0; i < nums.length; i++) {
+//         sum += nums[i];
+
+//         if (sum === k) res++;
+
+//         const complement = sum - k;
+
+//         if (prefixSumMap.has(complement)) {
+//             res += prefixSumMap.get(complement);
+//         }
+
+//         prefixSumMap.set(sum, (prefixSumMap.get(sum) + 1) || 1);
+//     }
+
+//     return res;
+// };
 
 
 // var subarraySum = function(nums, k) {

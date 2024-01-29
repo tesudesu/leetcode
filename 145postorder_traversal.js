@@ -19,3 +19,22 @@ var postorderTraversal = function(root) {
 
     return ans;
 };
+
+
+var postorderTraversal = function(root) {
+    let stack = [];
+    let curr = root;
+    let ans = [];
+
+    while (curr || stack.length > 0) {
+        while (curr) {
+            ans.push(curr.val);
+            stack.push(curr);
+            curr = curr.right;
+        }
+        curr = stack.pop();
+        curr = curr.left;
+    }
+
+    return ans.reverse();
+};
