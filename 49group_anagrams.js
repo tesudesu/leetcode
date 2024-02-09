@@ -1,5 +1,7 @@
 // https://leetcode.com/problems/group-anagrams/
 
+// O(nm) time
+
 var groupAnagrams = function(strs) {
     let maps = {};
     for (let i = 0; i < strs.length; i++) {
@@ -22,5 +24,31 @@ var groupAnagrams = function(strs) {
         ans.push(maps[label]);
     }
 
+    return ans;
+};
+
+
+// O(nmlogm) time
+
+var groupAnagrams = function(strs) {
+    const map = {};
+
+    for (let i = 0; i < strs.length; i++) {
+        let sorted = strs[i].split("");
+        sorted.sort();
+        sorted = sorted.join("");
+        if (map[sorted]) {
+            map[sorted].push(strs[i]);
+        } else {
+            map[sorted] = [strs[i]];
+        }
+    }
+
+    let ans = [];
+
+    for (const str in map) {
+        ans.push(map[str]);
+    }
+    
     return ans;
 };

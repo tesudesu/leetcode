@@ -32,3 +32,39 @@ var evalRPN = function (tokens) {
 
     return stack[0];
 };
+
+
+var evalRPN = function (tokens) {
+    let stack = [];
+
+    for (let i = 0; i < tokens.length; i++) {
+        let second;
+        let first;
+        switch (tokens[i]) {
+            case "+":
+                second = stack.pop();
+                first = stack.pop();
+                stack.push(first + second);
+                break;
+            case "-":
+                second = stack.pop();
+                first = stack.pop();
+                stack.push(first - second);
+                break;
+            case "*":
+                second = stack.pop();
+                first = stack.pop();
+                stack.push(first * second);
+                break;
+            case "/":
+                second = stack.pop();
+                first = stack.pop();
+                stack.push(Math.trunc(first / second));
+                break;
+            default:
+                stack.push(Number(tokens[i]));
+        }
+    }
+
+    return stack[0];
+};
