@@ -13,6 +13,22 @@ var hasCycle = function(head) {
     return false;
 };
 
+
+var hasCycle = function(head) {
+    const set = new Set();
+
+    while (head) {
+        if (set.has(head)) {
+            return true;
+        }
+        set.add(head);
+        head = head.next;
+    }
+
+    return false;
+};
+
+
 // var hasCycle = function(head) {
 //     while (head !== null || (head && head.val !== Infinity)) {
 //         if (head.val === Infinity) return true;
