@@ -1,33 +1,56 @@
 // https://leetcode.com/problems/custom-sort-string/
 
 var customSortString = function(order, s) {
-    const indices = {};
-
-    for (let i = 0; i < order.length; i++) {
-        indices[order[i]] = i;
-    }
-
-    let sArr = [];
-    let excess = "";
+    const sFreq = {};
 
     for (let i = 0; i < s.length; i++) {
-        if (indices.hasOwnProperty(s[i])) {
-            sArr.push(s[i]);
-        } else {
-            excess += s[i];
+        sFreq[s[i]] = (sFreq[s[i]] + 1) || 1;
+    }
+
+    let ans = [];
+
+    for (let i = 0; i < order.length; i++) {
+        if (sFreq[order[i]]) {
+            for (let j = 0; j < sFreq[order[i]]; j++) {
+                ans.push(order[i]);
+            }
+            sFreq[order[i]] = 0;
         }
     }
 
-    sArr.sort((a, b) => {
-        if (!indices.hasOwnProperty(a) || !indices.hasOwnProperty(b)) {
-            return -1;
+    for (const letter in sFreq) {
+        if (sFreq[letter] !== 0) {
+            for (let i = 0; i < sFreq[letter]; i++) {
+                ans.push(letter);
+            }
         }
-        if (indices[a] <= indices[b]) {
-            return -1;
-        } else {
-            return 1;
-        }
-    });
+    }
 
-    return sArr.join("") + excess;
+    return ans.join("");
+};
+
+
+var customSortString = function(order, s) {
+    const ordering = {};
+
+    for (let i = 0; i < order.length; i++) {
+        ordering[order[i]] = i;
+    }
+
+    let inOrder = [];
+    let other = [];
+
+    for (let i = 0; i < s.length; i++) {
+        if (ordering.hasOwnProperty(s[i])) {
+            inOrder.push(s[i]);
+        } else {
+            other.push(s[i]);
+        }
+    }
+
+    inOrder.sort((a, b) => {
+        return ordering[a] - ordering[b];
+    })
+
+    return inOrder.join("") + other.join("");
 };

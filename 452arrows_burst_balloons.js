@@ -17,3 +17,26 @@ var findMinArrowShots = function(points) {
 
     return arrow;
 };
+
+
+var findMinArrowShots = function(points) {
+    points.sort((a, b) => {
+        return a[0] - b[0];
+    })
+
+    let curr = points[0];
+    let tot = 1;
+
+    for (let i = 1; i < points.length; i++) {
+        const [start, end] = points[i];
+        if (start > curr[1]) {
+            tot++;
+            curr = points[i];
+        } else {
+            curr[0] = Math.max(start, curr[0]);
+            curr[1] = Math.min(end, curr[1]);
+        }
+    }
+
+    return tot;
+};

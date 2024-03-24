@@ -1,6 +1,25 @@
 // https://leetcode.com/problems/contiguous-array/
 
 var findMaxLength = function(nums) {
+    let sum = 0;
+    const prefixSum = new Map();
+    prefixSum.set(0, -1);
+    let maxLength = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i] === 0 ? -1 : 1;
+        if (prefixSum.has(sum)) {
+            maxLength = Math.max(maxLength, i - prefixSum.get(sum));
+        } else {
+            prefixSum.set(sum, i);
+        }
+    }
+
+    return maxLength;
+};
+
+
+var findMaxLength = function(nums) {
     let diff = 0;
     const map = new Map();
     map.set(0, -1);
@@ -21,6 +40,7 @@ var findMaxLength = function(nums) {
 
     return ans;
 };
+
 
 // var findMaxLength = function(nums) {
 //     let zeroCount = Array(nums.length + 1).fill(0);

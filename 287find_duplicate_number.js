@@ -21,23 +21,16 @@ var findDuplicate = function(nums) {
 };
 
 
+// Negative markings
+
 // var findDuplicate = function(nums) {
-//     let res;
-    
 //     for (let i = 0; i < nums.length; i++) {
-//         if (nums[Math.abs(nums[i])] < 0) {
-//             res = Math.abs(nums[i]);
-//             break;
-//         } else {
-//             nums[Math.abs(nums[i])] *= -1;
+//         const num = Math.abs(nums[i]);
+//         if (nums[num] < 0) {
+//             return num;
 //         }
+//         nums[num] *= -1;
 //     }
-
-//     for (let i = 0; i < nums.length; i++) {
-//         nums[i] = Math.abs(nums[i]);
-//     }
-
-//     return res;
 // };
 
 

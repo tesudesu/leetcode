@@ -35,3 +35,43 @@ var insert = function(intervals, newInterval) {
 
     return ans;
 };
+
+
+// var insert = function(intervals, newInterval) {
+//     let ans = [];
+
+//     if (intervals.length > 0 && intervals[0][0] > newInterval[1]) {
+//         intervals.unshift(newInterval);
+//         return intervals;
+//     }
+
+//     for (let i = 0; i < intervals.length; i++) {
+//         if (intervals[i][1] >= newInterval[0]) {
+//             let j = i + 1;
+//             while (j < intervals.length && intervals[j][0] <= newInterval[1]) {
+//                 j++;
+//             }
+
+//             if (newInterval[1] >= intervals[i][0]) {
+//                 let add = [Math.min(intervals[i][0], newInterval[0]), Math.max(intervals[j - 1][1], newInterval[1])];
+//                 ans.push(add);
+//                 for (let k = j; k < intervals.length; k++) {
+//                     ans.push(intervals[k]);
+//                 }
+//             } else {
+//                 ans.push(newInterval);
+//                 for (let k = j - 1; k < intervals.length; k++) {
+//                     ans.push(intervals[k]);
+//                 }
+//             }
+            
+//             return ans;
+//         } else {
+//             ans.push(intervals[i]);
+//         }
+//     }
+
+//     ans.push(newInterval);
+
+//     return ans;
+// };

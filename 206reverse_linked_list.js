@@ -13,3 +13,15 @@ var reverseList = function(head) {
 
     return prev;
 };
+
+
+var reverseList = function(head) {
+    if (!head || !head.next) {
+        return head;
+    }
+
+    const p = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return p;
+};

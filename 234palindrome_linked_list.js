@@ -1,19 +1,55 @@
 // https://leetcode.com/problems/palindrome-linked-list/
 
 var isPalindrome = function(head) {
-    let arr = [];
+    let n = 1;
 
-    while (head) {
-        arr.push(head.val);
-        head = head.next;
+    let dummy = head;
+
+    while (dummy.next) {
+        n++;
+        dummy = dummy.next;
     }
 
-    for (let i = 0; i < Math.floor(arr.length / 2); i++) {
-        if (arr[i] !== arr[arr.length - 1 - i]) return false;
+    dummy = head;
+    let prev = null;
+
+    for (let i = 0; i < Math.floor(n / 2); i++) {
+        const temp = dummy.next;
+        dummy.next = prev;
+        prev = dummy;
+        dummy = temp;
+    }
+
+    if (n % 2 !== 0) {
+        dummy = dummy.next;
+    }
+
+    for (let i = 0; i < Math.floor(n / 2); i++) {
+        if (dummy.val !== prev.val) {
+            return false;
+        }
+        dummy = dummy.next;
+        prev = prev.next;
     }
 
     return true;
 };
+
+
+// var isPalindrome = function(head) {
+//     let arr = [];
+
+//     while (head) {
+//         arr.push(head.val);
+//         head = head.next;
+//     }
+
+//     for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+//         if (arr[i] !== arr[arr.length - 1 - i]) return false;
+//     }
+
+//     return true;
+// };
 
 
 // var isPalindrome = function(head) {
