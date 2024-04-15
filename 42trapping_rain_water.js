@@ -57,53 +57,49 @@ var trap = function(height) {
 
 // O(n) space, O(n) time
 
-// var trap = function(height) {
-//     let maxLeft = Array(height.length).fill(0);
-//     let maxRight = Array(height.length).fill(0);
+var trap = function(height) {
+    const n = height.length;
+    const maxLeft = Array(n).fill(0);
+    const maxRight = Array(n).fill(0);
 
-//     for (let i = 1; i < height.length; i++) {
-//         maxLeft[i] = Math.max(maxLeft[i - 1], height[i - 1]);
-//     }
+    for (let i = 1; i < height.length; i++) {
+        maxLeft[i] = Math.max(height[i - 1], maxLeft[i - 1]);
+    } 
 
-//     for (let i = height.length - 2; i >= 0; i--) {
-//         maxRight[i] = Math.max(maxRight[i + 1], height[i + 1]);
-//     }
+    for (let i = height.length - 2; i >= 0; i--) {
+        maxRight[i] = Math.max(height[i + 1], maxRight[i + 1]);
+    }
 
-//     let tot = 0;
+    let tot = 0;
 
-//     for (let i = 0; i < height.length; i++) {
-//         let diff = Math.min(maxLeft[i], maxRight[i]) - height[i];
-//         tot += diff > 0 ? diff : 0;
-//     }
+    for (let i = 0; i < height.length; i++) {
+        tot += Math.max(0, Math.min(maxLeft[i], maxRight[i]) - height[i]);
+    }
 
-//     return tot;
-// };
+    return tot;
+};
 
 
 // O(1) space, O(n) time
 
-// var trap = function(height) {
-//     let tot = 0;
+var trap = function(height) {
+    let maxLeft = height[0];
+    let maxRight = height[height.length - 1];
+    let left = 0;
+    let right = height.length - 1;
+    let tot = 0;
 
-//     let left = 0
-//     let right = height.length - 1;
+    while (right - left >= 2) {
+        if (maxLeft <= maxRight) {
+            left++;
+            tot += Math.max(0, maxLeft - height[left]);
+            maxLeft = Math.max(maxLeft, height[left]);
+        } else {
+            right--;
+            tot += Math.max(0, maxRight - height[right]);
+            maxRight = Math.max(maxRight, height[right]);
+        }
+    }
 
-//     let maxLeft = 0;
-//     let maxRight = 0;
-
-//     while (left <= right) {
-//         if (maxLeft <= maxRight) {
-//             const diff = maxLeft - height[left];
-//             tot += diff > 0 ? diff : 0;
-//             maxLeft = Math.max(maxLeft, height[left]);
-//             left++;
-//         } else {
-//             const diff = maxRight - height[right];
-//             tot += diff > 0 ? diff : 0;
-//             maxRight = Math.max(maxRight, height[right]);
-//             right--;
-//         }
-//     }
-
-//     return tot;
-// };
+    return tot;
+};

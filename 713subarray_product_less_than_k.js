@@ -3,19 +3,19 @@
 // Sliding window
 
 var numSubarrayProductLessThanK = function(nums, k) {
-    let tot = 0;
     let left = 0;
+    let tot = 0;
     let product = 1;
+
     for (let i = 0; i < nums.length; i++) {
         product *= nums[i];
-        while (product >= k) {
+        while (product >= k && left <= i) {
             product /= nums[left];
             left++;
         }
-        if (i >= left) {
-            tot += i - left + 1;
-        }
+        tot += i - left + 1;
     }
+
     return tot;
 };
 
