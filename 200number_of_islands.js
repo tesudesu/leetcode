@@ -41,6 +41,32 @@ var numIslands = function(grid) {
 };
 
 
+var numIslands = function(grid) {
+    let num = 0;
+
+    const islanded = Array(grid.length).fill().map(() => Array(grid[0].length).fill(false));
+
+    const dfs = (i, j) => {
+        if (i < 0 || j < 0 || i === grid.length || j === grid[0].length || grid[i][j] === "0" || islanded[i][j]) return;
+        islanded[i][j] = true;
+        dfs(i - 1, j);
+        dfs(i + 1, j);
+        dfs(i, j - 1);
+        dfs(i, j + 1);
+    }
+
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[0].length; j++) {
+            if (islanded[i][j] || grid[i][j] === "0") continue;
+            num++;
+            dfs(i, j);
+        }
+    }
+
+    return num;
+};
+
+
 // var numIslands = function(grid) {
 //     let tot = 0;
 
