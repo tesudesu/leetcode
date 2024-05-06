@@ -24,6 +24,27 @@ var minOperations = function(nums, k) {
 
 
 var minOperations = function(nums, k) {
+    let xor = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        xor ^= nums[i];
+    }
+
+    let tot = 0;
+
+    while (xor > 0 || k > 0) {
+        if (xor % 2 !== k % 2) {
+            tot++;
+        }
+        xor = Math.floor(xor / 2);
+        k = Math.floor(k / 2);
+    }
+
+    return tot;
+};
+
+
+var minOperations = function(nums, k) {
     const countBits = Array(32).fill(0);
 
     for (let i = 0; i < nums.length; i++) {
