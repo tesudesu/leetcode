@@ -19,3 +19,20 @@ var maximumHappinessSum = function(happiness, k) {
 
     return tot;
 };
+
+
+var maximumHappinessSum = function(happiness, k) {
+    const maxQueue = new MaxPriorityQueue();
+
+    for (let i = 0; i < happiness.length; i++) {
+        maxQueue.enqueue(happiness[i]);
+    }
+
+    let tot = 0;
+
+    for (let i = 0; i < k; i++) {
+        tot += Math.max(maxQueue.dequeue().element - i, 0);
+    }
+    
+    return tot;
+};
