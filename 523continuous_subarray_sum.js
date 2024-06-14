@@ -20,3 +20,29 @@ var checkSubarraySum = function(nums, k) {
 
     return false;
 };
+
+
+var checkSubarraySum = function(nums, k) {
+    let sum = nums[0];
+    const seen = new Map();
+    seen.set(sum, 0);
+
+    for (let i = 1; i < nums.length; i++) {
+        sum += nums[i];
+        if (sum % k === 0) {
+            return true;
+        }
+        let complement = sum % k;
+        while (complement <= sum) {
+            if (seen.has(complement) && seen.get(complement) < i - 1) {
+                return true;
+            }
+            complement += k;
+        }
+        if (!seen.has(sum)) {
+            seen.set(sum, i);
+        }
+    }
+
+    return false;
+};

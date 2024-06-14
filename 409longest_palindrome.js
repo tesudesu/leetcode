@@ -25,6 +25,24 @@ var longestPalindrome = function (s) {
     return length;
 };
 
+
+var longestPalindrome = function(s) {
+    const set = new Set();
+    let longest = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        if (!set.has(s[i])) {
+            set.add(s[i]);
+        } else {
+            longest += 2;
+            set.delete(s[i]);
+        }
+    }
+
+    return set.size > 0 ? longest + 1 : longest;
+};
+
+
 // var longestPalindrome = function (s) {
 //     let obj = {};
 //     for (let i = 0; i < s.length; i++) {
