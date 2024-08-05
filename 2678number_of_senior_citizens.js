@@ -9,3 +9,16 @@ var countSeniors = function(details) {
     }
     return res;
 };
+
+
+var countSeniors = function(details) {
+    let tot = 0;
+
+    for (const person of details) {
+        if (person[11] > "6" || person[11] === "6" && person[12] > "0") {
+            tot++;
+        }
+    }
+
+    return tot;
+};
