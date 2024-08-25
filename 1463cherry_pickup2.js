@@ -70,18 +70,21 @@ var cherryPickup = function(grid) {
     const cache = Array(n).fill().map(() => Array(m).fill().map(() => Array(m).fill(-1)));
 
     const dp = (i, j, k) => {
-        if (i === n) return 0;
-        if (j < 0 || j === m || k < 0 || k === m) return 0;
-        if (j === k) return -Infinity;
+        if (i === n) {
+            return 0;
+        }
+        if (j < 0 || k < 0 || j === m || k === m || j === k) {
+            return 0;
+        }
 
         if (cache[i][j][k] !== -1) {
             return cache[i][j][k];
         }
 
-        const ans = grid[i][j] + grid[i][k] + Math.max(dp(i + 1, j - 1, k), dp(i + 1, j, k), dp(i + 1, j + 1, k), dp(i + 1, j - 1, k - 1), dp(i + 1, j, k - 1), dp(i + 1, j + 1, k - 1), dp(i + 1, j - 1, k + 1), dp(i + 1, j, k + 1), dp(i + 1, j + 1, k + 1));
+        const ans = grid[i][j] + grid[i][k] + Math.max(dp(i + 1, j - 1, k - 1), dp(i + 1, j, k - 1), dp(i + 1, j + 1, k - 1), dp(i + 1, j - 1, k), dp(i + 1, j, k), dp(i + 1, j + 1, k), dp(i + 1, j - 1, k + 1), dp(i + 1, j, k + 1), dp(i + 1, j + 1, k + 1));
 
         cache[i][j][k] = ans;
-
+        
         return ans;
     }
 

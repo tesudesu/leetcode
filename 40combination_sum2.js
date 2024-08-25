@@ -1,5 +1,39 @@
 // https://leetcode.com/problems/combination-sum-ii/
 
+var combinationSum2 = function(candidates, target) {
+    candidates.sort((a, b) => a - b);
+    let ans = [];
+    let curr = [];
+
+    const dfs = (i, sum) => {
+        if (sum === target) {
+            ans.push(curr.slice());
+            return;
+        }
+        if (sum > target || i === candidates.length) {
+            return;
+        }
+        
+        // take
+        curr.push(candidates[i]);
+        dfs(i + 1, sum + candidates[i]);
+        curr.pop();
+
+        // skip
+        let j = i + 1;
+        while (candidates[j] === candidates[i]) {
+            j++;
+        }
+
+        dfs(j, sum);
+    }
+
+    dfs(0, 0);
+
+    return ans;
+};
+
+
 var combinationSum2 = function (candidates, target) {
     candidates.sort((a, b) => a - b);
     let ans = [];
