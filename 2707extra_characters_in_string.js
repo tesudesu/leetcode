@@ -17,3 +17,32 @@ var minExtraChar = function(s, dictionary) {
 
     return dp[dp.length - 1];
 };
+
+
+var minExtraChar = function(s, dictionary) {
+    const set = new Set(dictionary);
+
+    const cache = Array(s.length).fill(-1);
+    
+    const dfs = (i) => {
+        if (i === s.length) {
+            return 0;
+        }
+        if (cache[i] !== -1) {
+            return cache[i];
+        }
+        let min = Infinity;
+        for (let j = i; j < s.length; j++) {
+            const str = s.slice(i, j + 1);
+            if (set.has(str)) {
+                min = Math.min(min, dfs(j + 1));
+            } else {
+                min = Math.min(min, j - i + 1 + dfs(j + 1));
+            }
+        }
+        cache[i] = min;
+        return min;
+    }
+
+    return dfs(0);
+};
