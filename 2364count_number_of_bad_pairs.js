@@ -1,6 +1,27 @@
 // https://leetcode.com/problems/count-number-of-bad-pairs/
 
 var countBadPairs = function(nums) {
+    let n = nums.length;
+
+    let numMinusIndex = new Map();
+
+    for (let i = 0; i < n; i++) {
+        let num = nums[i] - i;
+        numMinusIndex.set(num, (numMinusIndex.get(num) + 1) || 1);
+    }
+
+    let tot = 0;
+
+    for (const [num, count] of numMinusIndex) {
+        let remainder = n - count;
+        tot += count * remainder;
+    }
+
+    return tot / 2;
+};
+
+
+var countBadPairs = function(nums) {
     const map = new Map();
 
     for (let i = 0; i < nums.length; i++) {
