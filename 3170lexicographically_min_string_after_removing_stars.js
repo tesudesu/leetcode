@@ -34,3 +34,35 @@ var clearStars = function(s) {
 
     return ans.join("");
 };
+
+
+var clearStars = function(s) {
+    const last = Array(26).fill().map(() => Array());
+    const deleted = Array(s.length).fill(false);
+
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === "*") {
+            deleted[i] = true;
+            for (let j = 0; j < 26; j++) {
+                if (last[j].length !== 0) {
+                    let ind = last[j].pop();
+                    deleted[ind] = true;
+                    break;
+                }
+            }
+        } else {
+            let code = s.charCodeAt(i) - 97;
+            last[code].push(i);
+        }
+    }
+
+    let ans = [];
+
+    for (let i = 0; i < deleted.length; i++) {
+        if (!deleted[i]) {
+            ans.push(s[i]);
+        }
+    }
+
+    return ans.join("");
+};
